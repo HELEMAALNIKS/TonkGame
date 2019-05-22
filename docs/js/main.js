@@ -1,10 +1,16 @@
-class Game {
+class Gamescene {
     constructor() {
-        let mario = new Mario();
     }
 }
-window.addEventListener("load", () => new Game());
-class Mario {
+class Hammer {
+    constructor() {
+    }
+}
+class Loadscene {
+    constructor() {
+    }
+}
+class Tonk {
     constructor() {
         // properties
         this.lives = 5;

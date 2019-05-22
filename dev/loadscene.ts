@@ -1,0 +1,5 @@
+class Loadscene {
+    constructor() {
+        
+    }
+}
