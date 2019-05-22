@@ -1,4 +1,4 @@
-class Mario {
+class Tonk {
     // properties
     lives : number = 5
     hasGrown :boolean = false
