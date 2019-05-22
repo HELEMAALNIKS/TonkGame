@@ -1,0 +1,5 @@
+class hammer {
+    constructor() {
+        
+    }
+}
