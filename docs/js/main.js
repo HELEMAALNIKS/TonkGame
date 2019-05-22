@@ -1,5 +1,6 @@
 class Gamescene {
     constructor() {
+        new Tonk();
     }
 }
 class Hammer {
@@ -12,11 +13,11 @@ class Loadscene {
 }
 class Tonk {
     constructor() {
-        // properties
-        this.lives = 5;
-        this.hasGrown = false;
+        console.log("Tonk was created!");
+        this.div = document.createElement("tonk");
+        document.body.appendChild(this.div);
+        this.div.style.transform = `translate(10px, 10px)`;
     }
-    //methods
     jump() {
     }
     moveBy() {
@@ -27,8 +28,8 @@ class Tonk {
         //respawn
         //play sounds
         //live --
-        this.lives--;
-        console.log(this.lives);
+        /*this.lives--
+        console.log(this.lives)*/
     }
 }
 //# sourceMappingURL=main.js.map

@@ -13,10 +13,9 @@ game * {
     background-repeat: no-repeat;
 }
 
-fish {
-    background-image: url(../images/fish.png);
+tonk {
+    background-image: url(../images/tonk.png);
     width:130px; height: 110px;
-    filter: hue-rotate(90deg);
     cursor: pointer;
 }
 
