@@ -22,7 +22,7 @@ export class GameScene extends Phaser.Scene {
 
     create(): void {
         this.add.image(0, 0, 'background').setOrigin(0, 0)
-        //this.add.image(2880, 0, 'background').setOrigin(2880, 0)       
+        this.add.image(2880, 0, 'background').setOrigin(0, 0)       
 
         //TODO:
         //Uitzoeken hoe achtergrond herhaald kan worden
@@ -42,12 +42,22 @@ export class GameScene extends Phaser.Scene {
         // TODO add player
         this.player = new Player(this)
 
+        for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
+            const element = this.physics.world.bounds.width[i];
+            console.log("test")
+            this.platforms = this.add.group({ runChildUpdate: true })
+            let groundLength = i + 800
+            this.platforms.addMultiple([
+            new Platform(this, groundLength, 874, "ground")
+        ], true)
+        }
+
         this.platforms = this.add.group({ runChildUpdate: true })
         this.platforms.addMultiple([
-            new Platform(this, 800, 874, "ground"),
-            new Platform(this, 2400, 874, "ground"),
-            new Platform(this, 3800, 874, "ground"),
-            new Platform(this, 5200, 874, "ground")
+            // new Platform(this, 800, 874, "ground"),
+            // new Platform(this, 2400, 874, "ground"),
+            // new Platform(this, 3800, 874, "ground"),
+            // new Platform(this, 5200, 874, "ground"),
             new Platform(this, 250, 400, "platform"),
             new Platform(this, 300, 500, "platform"),
             new MovingPlatform(this, 400, 300, "ice")
