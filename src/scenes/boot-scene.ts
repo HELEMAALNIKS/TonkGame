@@ -10,7 +10,7 @@ export class BootScene extends Phaser.Scene {
     }
 
     preload(): void {
-        this.load.image('sky', require('../assets/background.png'))
+        this.load.image('background', require('../assets/background.png'))
         this.load.image('star', require('../assets/star.png'))
         this.load.image('bomb', require('../assets/bomb.png'))
         this.load.image('bmo', require('../assets/bmo.png'))

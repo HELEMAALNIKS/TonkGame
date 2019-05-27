@@ -13,7 +13,7 @@ export class EndScene extends Phaser.Scene {
     create(): void {
         // change this to a nice game over image
 
-        this.add.image(0, 0, 'sky').setOrigin(0, 0)
+        this.add.image(0, 0, 'background').setOrigin(0, 0)
 
         // add text here
 

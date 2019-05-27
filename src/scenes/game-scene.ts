@@ -17,7 +17,7 @@ export class GameScene extends Phaser.Scene {
     }
 
     create(): void {
-        this.add.image(0, 0, 'sky').setOrigin(0, 0)      
+        this.add.image(0, 0, 'background').setOrigin(0, 0)      
     
         // 11 STARS
         this.stars = this.physics.add.group({
