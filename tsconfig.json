@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
-        "target":"es6",
-        "sourceMap": true,
-        "watch": true,
-        "outFile": "docs/js/main.js"
+        "allowUnusedLabels": true,
+        "noImplicitReturns": true,
+        "noImplicitAny": false,
+        "strictPropertyInitialization": false,
+        "target": "es6",
     },
-    "exclude": [
-        "docs"
+    "include": [
+        "./src/**/*"
     ]
 }
