@@ -48,7 +48,7 @@ export class GameScene extends Phaser.Scene {
             let groundLength = i + 800
             console.log(groundLength)
             this.platforms.addMultiple([
-                new Platform(this, groundLength, 874, "ground"),
+                new Platform(this, groundLength, 859, "ground"),
             // new Platform(this, 800, 874, "ground"),
             // new Platform(this, 2400, 874, "ground"),
             // new Platform(this, 3800, 874, "ground"),
