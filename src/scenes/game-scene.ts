@@ -40,10 +40,11 @@ export class GameScene extends Phaser.Scene {
         // Dit voegt de player toe
         this.player = new Player(this)
 
+        this.platforms = this.add.group({ runChildUpdate: true })
 
         for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
             const element = this.physics.world.bounds.width[i];
-            this.platforms = this.add.group({ runChildUpdate: true })
+            
             let groundLength = i + 800
             console.log(groundLength)
             this.platforms.addMultiple([
