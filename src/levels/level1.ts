@@ -10,6 +10,7 @@ export class Level1 extends Phaser.Scene {
     
     create(): void {
         this.gamescene = new GameScene()
+        console.log("wekrt dit?")
     }
     
 }
