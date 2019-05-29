@@ -52,17 +52,17 @@ export class GameScene extends Phaser.Scene {
         }
 
         //platforms ophalen per level
-        let level = 1
-        while (level = 1) {
-            for (let level1 = 0; level1 < array.length; level1++) {
-                const element = array[level1];
+        // let level = 1
+        // while (level = 1) {
+        //     for (let level1 = 0; level1 < array.length; level1++) {
+        //         const element = array[level1];
                 
-                this.platforms.addMultiple([
-                    new Platform(this, x, y, "platform"),
-                ], true)
+        //         this.platforms.addMultiple([
+        //             new Platform(this, x, y, "platform"),
+        //         ], true)
                 
-            }
-        }
+        //     }
+        // }
         
        // define collisions for bouncing, and overlaps for pickups
         this.physics.add.collider(this.stars, this.platforms)

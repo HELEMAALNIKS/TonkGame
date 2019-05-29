@@ -30,7 +30,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         
         let grounded = this.body.touching.down 
         if (this.cursors.space.isDown && grounded) {
-            this.setVelocityY(-400)
+            this.setVelocityY(-200)
         }
         
     }
