@@ -22,7 +22,7 @@ export class GameScene extends Phaser.Scene {
 
     create(): void {
 
-        // Dit herhaalt de achtergrond
+        // achtergrond herhalen
         for (let b = 0; b < this.physics.world.bounds.width; b=b+3420) {
             const element = this.physics.world.bounds.width[b];
             console.log(b)
@@ -34,14 +34,14 @@ export class GameScene extends Phaser.Scene {
         this.stars = this.physics.add.group({
         })
         //Waarom is dit nodig voor de player? Navragen aan bob.
-
-        // this.add.image(40, 50, 'star')
         
         // Dit voegt de player toe
         this.player = new Player(this)
 
+        //platforms initieren
         this.platforms = this.add.group({ runChildUpdate: true })
 
+        //ground herhalen
         for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
             const element = this.physics.world.bounds.width[i];
             let groundLength = i + 800
@@ -49,6 +49,19 @@ export class GameScene extends Phaser.Scene {
             this.platforms.addMultiple([
                 new Platform(this, groundLength, 859, "ground"),
             ], true)
+        }
+
+        //platforms ophalen per level
+        let level = 1
+        while (level = 1) {
+            for (let level1 = 0; level1 < array.length; level1++) {
+                const element = array[level1];
+                
+                this.platforms.addMultiple([
+                    new Platform(this, x, y, "platform"),
+                ], true)
+                
+            }
         }
         
        // define collisions for bouncing, and overlaps for pickups
@@ -71,7 +84,7 @@ export class GameScene extends Phaser.Scene {
     //     // TO DO check if we have all the stars, then go to the end scene
     //     //this.add.text(80, 50, `${score}`, { fontFamily: 'Arial Black', fontSize: 24, color: '#ffffff' }).setOrigin(0.5)
     // }
-    
+
     update(){
         this.player.update()
         
