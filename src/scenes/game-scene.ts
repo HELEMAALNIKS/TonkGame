@@ -44,25 +44,18 @@ export class GameScene extends Phaser.Scene {
 
         for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
             const element = this.physics.world.bounds.width[i];
-            
             let groundLength = i + 800
             console.log(groundLength)
             this.platforms.addMultiple([
                 new Platform(this, groundLength, 859, "ground"),
-            // new Platform(this, 800, 874, "ground"),
-            // new Platform(this, 2400, 874, "ground"),
-            // new Platform(this, 3800, 874, "ground"),
-            // new Platform(this, 5200, 874, "ground"),
             ], true)
         }
-
-        // TODO aan bob vragen waarom de player door de grond heen zakt ¯\_(ツ)_/¯ 
         
        // define collisions for bouncing, and overlaps for pickups
         this.physics.add.collider(this.stars, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
         
-        this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
+        //this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
 
         //camera
         this.cameras.main.setSize(1440, 900) // canvas size
@@ -70,18 +63,15 @@ export class GameScene extends Phaser.Scene {
         this.cameras.main.startFollow(this.player)
     }
     
-
-    private collectStar(player : Player , star) : void {
-        this.stars.remove(star, true, true)
-        this.registry.values.score++
+    // private collectStar(player : Player , star) : void {
+    //     this.stars.remove(star, true, true)
+    //     this.registry.values.score++
         
 
-        // TO DO check if we have all the stars, then go to the end scene
-        //this.add.text(80, 50, `${score}`, { fontFamily: 'Arial Black', fontSize: 24, color: '#ffffff' }).setOrigin(0.5)
-    }
-
+    //     // TO DO check if we have all the stars, then go to the end scene
+    //     //this.add.text(80, 50, `${score}`, { fontFamily: 'Arial Black', fontSize: 24, color: '#ffffff' }).setOrigin(0.5)
+    // }
     
-
     update(){
         this.player.update()
         
