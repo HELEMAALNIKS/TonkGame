@@ -1,2 +1,5 @@
 import { GameScene } from "../scenes/game-scene"
-//blablabla fijne tekst
+export class Level1 extends Phaser.Scene { 
+    
+}
+
