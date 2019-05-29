@@ -22,46 +22,24 @@ export class GameScene extends Phaser.Scene {
 
     create(): void {
 
-        for (let b = 0; b < this.physics.world.bounds.width; b=b+2880) {
+        // Dit herhaalt de achtergrond
+        for (let b = 0; b < this.physics.world.bounds.width; b=b+3420) {
             const element = this.physics.world.bounds.width[b];
             console.log(b)
             this.add.image(b, 0, 'background').setOrigin(0, 0)
         
         }
 
-        // this.add.image(0, 0, 'background').setOrigin(0, 0)
-        // this.add.image(2880, 0, 'background').setOrigin(0, 0)       
-
-        //TODO:
-        //Uitzoeken hoe achtergrond herhaald kan worden
-    
-
         // 11 STARS
         this.stars = this.physics.add.group({
-            key: 'star',
-            repeat: 11,
-            setXY: { x: 12, y: 30, stepX: 70 },
         })
+        //Waarom is dit nodig voor de player? Navragen aan bob.
 
-        this.add.image(40, 50, 'star')
+        // this.add.image(40, 50, 'star')
         
-
-
-        // TODO add player
+        // Dit voegt de player toe
         this.player = new Player(this)
 
-
-
-        /*this.platforms = this.add.group({ runChildUpdate: true })
-        this.platforms.addMultiple([
-            // new Platform(this, 800, 874, "ground"),
-            // new Platform(this, 2400, 874, "ground"),
-            // new Platform(this, 3800, 874, "ground"),
-            // new Platform(this, 5200, 874, "ground"),
-            new Platform(this, 100, 550, "platform"),
-            new Platform(this, 300, 500, "platform"),
-            new MovingPlatform(this, 400, 300, "ice")
-        ], true)*/
 
         for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
             const element = this.physics.world.bounds.width[i];
