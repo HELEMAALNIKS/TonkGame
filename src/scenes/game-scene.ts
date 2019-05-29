@@ -21,8 +21,16 @@ export class GameScene extends Phaser.Scene {
     }
 
     create(): void {
-        this.add.image(0, 0, 'background').setOrigin(0, 0)
-        this.add.image(2880, 0, 'background').setOrigin(0, 0)       
+
+        for (let b = 0; b < this.physics.world.bounds.width; b=b+2880) {
+            const element = this.physics.world.bounds.width[b];
+            console.log(b)
+            this.add.image(b, 0, 'background').setOrigin(0, 0)
+        
+        }
+
+        // this.add.image(0, 0, 'background').setOrigin(0, 0)
+        // this.add.image(2880, 0, 'background').setOrigin(0, 0)       
 
         //TODO:
         //Uitzoeken hoe achtergrond herhaald kan worden
