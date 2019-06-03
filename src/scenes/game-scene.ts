@@ -1,7 +1,7 @@
 import { Player } from "../objects/player"
 import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
-import { StartScene } from "./start-scene";
+import { StartScene } from "./start-scene"
 
 export class GameScene extends Phaser.Scene {
 
@@ -9,9 +9,13 @@ export class GameScene extends Phaser.Scene {
     private platforms: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
 
+    
+
     constructor() {
         super({ key: "GameScene" })
     }
+
+
 
     init(): void {
         //this.registry.set("score", 0)
@@ -50,10 +54,11 @@ export class GameScene extends Phaser.Scene {
                 new Platform(this, groundLength, 859, "ground"),
             ], true)
         }
+        
 
         //platforms ophalen per level
         //https://stackoverflow.com/questions/43726218/how-to-loop-through-a-json-object-with-typescript-angular2
-        function levelPlatforms() {
+        /*function levelPlatforms() {
             let level = 1
             if (level == 1) {
                 for (let level1 = 0; level1 < array.length; level1++) {
@@ -61,8 +66,8 @@ export class GameScene extends Phaser.Scene {
                     
                 }
             }
-        }
-        
+        }*/
+
         // while (level = 1) {
         //     for (let level1 = 0; level1 < array.length; level1++) {
         //         const element = array[level1];
