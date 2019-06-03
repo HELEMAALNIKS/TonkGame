@@ -103,7 +103,10 @@ export class GameScene extends Phaser.Scene {
 
     update(){
         this.player.update()
-        this.enemy.update()
+
+        //dit zorgt dat de enemy links en rechts loopt
+        setInterval(() => this.enemy.walkleft(),  100/300) 
+        setInterval(() => this.enemy.walkright(),  100/100)
         
     }
 

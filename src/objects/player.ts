@@ -1,6 +1,10 @@
+import { Enemy } from "./enemy";
+
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys
+    private enemy : Enemy 
+  
 
     constructor(scene) {
         super(scene, 100, 450, "tonk")
@@ -32,6 +36,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         if (this.cursors.space.isDown && grounded) {
             this.setVelocityY(-200)
         }
+
         
     }
 }
