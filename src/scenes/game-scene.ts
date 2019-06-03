@@ -53,7 +53,16 @@ export class GameScene extends Phaser.Scene {
 
         //platforms ophalen per level
         //https://stackoverflow.com/questions/43726218/how-to-loop-through-a-json-object-with-typescript-angular2
-        // let level = 1
+        function levelPlatforms() {
+            let level = 1
+            if (level == 1) {
+                for (let level1 = 0; level1 < array.length; level1++) {
+                    const element = array[level1];
+                    
+                }
+            }
+        }
+        
         // while (level = 1) {
         //     for (let level1 = 0; level1 < array.length; level1++) {
         //         const element = array[level1];
