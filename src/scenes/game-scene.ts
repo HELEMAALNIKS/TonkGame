@@ -83,6 +83,7 @@ export class GameScene extends Phaser.Scene {
         this.physics.add.collider(this.stars, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.enemy, this.platforms)
+        this.physics.add.collider(this.player, this.enemy)
         
         //this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
 
