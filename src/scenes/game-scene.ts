@@ -1,13 +1,16 @@
 import { Player } from "../objects/player"
 import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
-import { StartScene } from "./start-scene"
+import { StartScene } from "./start-scene";
+import { Enemy } from "../objects/enemy"
+
 
 export class GameScene extends Phaser.Scene {
 
     private player : Player
     private platforms: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
+    private enemy : Enemy
 
     
 
@@ -41,6 +44,9 @@ export class GameScene extends Phaser.Scene {
         
         // Dit voegt de player toe
         this.player = new Player(this)
+
+        // Dit voegt een enemy toe
+        this.enemy = new Enemy(this)
 
         //platforms initieren
         this.platforms = this.add.group({ runChildUpdate: true })
@@ -82,6 +88,7 @@ export class GameScene extends Phaser.Scene {
        // define collisions for bouncing, and overlaps for pickups
         this.physics.add.collider(this.stars, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
+        this.physics.add.collider(this.enemy, this.platforms)
         
         //this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
 
@@ -102,6 +109,7 @@ export class GameScene extends Phaser.Scene {
 
     update(){
         this.player.update()
+        this.enemy.update()
         
     }
 
