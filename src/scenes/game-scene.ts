@@ -2,6 +2,7 @@ import { Player } from "../objects/player"
 import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
 import { StartScene } from "./start-scene";
+import { myVar } from "../objects/player"
 
 export class GameScene extends Phaser.Scene {
 
@@ -27,7 +28,6 @@ export class GameScene extends Phaser.Scene {
             const element = this.physics.world.bounds.width[b];
             console.log(b)
             this.add.image(b, 0, 'background').setOrigin(0, 0)
-        
         }
 
         // 11 STARS
@@ -57,8 +57,7 @@ export class GameScene extends Phaser.Scene {
             let level = 1
             if (level == 1) {
                 for (let level1 = 0; level1 < array.length; level1++) {
-                    const element = array[level1];
-                    
+                    const element = array[level1];                
                 }
             }
         }
@@ -97,7 +96,8 @@ export class GameScene extends Phaser.Scene {
 
     update(){
         this.player.update()
-        
-    }
 
+            this.add.image(40, 50, 'heart')
+            this.add.text(40, 50, myVar, { fontFamily: 'FUTURA', fontSize: 10, color: 'black' })       
+    }
 }

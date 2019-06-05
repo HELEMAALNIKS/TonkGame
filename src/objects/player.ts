@@ -1,6 +1,7 @@
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
-    private cursors: Phaser.Input.Keyboard.CursorKeys
+    private cursors: Phaser.Input.Keyboard.CursorKey   
+    public health = 3
 
     constructor(scene) {
         super(scene, 100, 450, "tonk")
@@ -25,13 +26,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.flipX = false
         } 
         
-
         // jump when the body is touching the floor
         
         let grounded = this.body.touching.down 
         if (this.cursors.space.isDown && grounded) {
             this.setVelocityY(-200)
         }
-        
     }
 }
+export var myVar = this.health;
