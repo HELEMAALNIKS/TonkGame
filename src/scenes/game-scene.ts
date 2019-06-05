@@ -82,7 +82,7 @@ export class GameScene extends Phaser.Scene {
             const element = 3[i];
             console.log(levels.level1.platforms[i].x)
             this.platforms.addMultiple([
-                new Platform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, "platform"),
+                new MovingPlatform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture),
             ], true)
         }
 
