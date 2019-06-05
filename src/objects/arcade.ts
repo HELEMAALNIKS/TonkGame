@@ -1,11 +1,11 @@
-import { Game } from "./game"
+
 import { Joystick } from "./joystick"
 export class Arcade{
     private readonly DEBUG          : boolean = true;
     private joysticks               : Joystick[]
     private readonly REDIRECT_URL   : string = "http://hr-cmgt.github.io/arcade-server"
     private multiplayer             : boolean = false
-    private game                    : Game
+    
     // PROPERTIES
     public get Joysticks()          : Joystick[] { return this.joysticks }
 
