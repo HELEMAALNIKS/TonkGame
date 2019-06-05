@@ -3,22 +3,35 @@ import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
 import { StartScene } from "./start-scene";
 import { Enemy } from "../objects/enemy"
+import {Joystick} from "../objects/joystick"
+import { Arcade } from "../objects/arcade"
+
+
 
 
 export class GameScene extends Phaser.Scene {
+   
 
     private player : Player
     private platforms: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
     private enemy : Enemy
+    private arcade: Arcade;
 
     
 
     constructor() {
         super({ key: "GameScene" })
+
+        this.arcade = new Arcade()
+        
+        document.addEventListener("joystick0button0", () => this.playerOneFire())
     }
 
-
+    private playerOneFire(): void {
+        console.log("FIRE!");
+        
+    }
 
     init(): void {
         //this.registry.set("score", 0)
@@ -111,6 +124,19 @@ export class GameScene extends Phaser.Scene {
         this.player.update()
         this.enemy.update()
         
+        for(let joystick of this.arcade.Joysticks){
+            joystick.update()
+            
+            // just log the values
+            if(joystick.Left)  console.log('LEFT')
+            if(joystick.Right) console.log('RIGHT')
+            if(joystick.Up)    console.log('UP')
+            if(joystick.Down)  console.log('Down')
+            
+            // use the values to set X and Y velocity of a player
+            this.player.setVelocityX(joystick.X * 400)
+            this.player.setVelocityY(joystick.Y * 400)
+        }
     }
 
 }
