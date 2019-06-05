@@ -4,11 +4,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys
     private enemy : Enemy 
+    public div:HTMLElement
   
 
     constructor(scene) {
         super(scene, 100, 450, "tonk")
-
+        
         this.cursors = this.scene.input.keyboard.createCursorKeys()
         
         this.scene.add.existing(this)
@@ -19,8 +20,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.setDragX(5000)
         this.setGravityY(1000)
         this.setGravityX(200)
+       
+        this.update()
+       
     }
 
+   
     public update(): void {
         
         if (this.cursors.left.isDown) {
@@ -38,12 +43,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         if (this.cursors.space.isDown && grounded) {
             this.setVelocityY(-1000)
         }
-
-        // jump when the body is touching the floor
-
-    
-
-
         
     }
 }

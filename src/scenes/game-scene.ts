@@ -13,6 +13,8 @@ export class GameScene extends Phaser.Scene {
 
     constructor() {
         super({ key: "GameScene" })
+       
+       
     }
 
     init(): void {
@@ -58,7 +60,9 @@ export class GameScene extends Phaser.Scene {
 
         //platforms ophalen per level
         //https://stackoverflow.com/questions/43726218/how-to-loop-through-a-json-object-with-typescript-angular2
-        function levelPlatforms() {
+     
+     
+    /*   function levelPlatforms() {
             let level = 1
             if (level == 1) {
                 for (let level1 = 0; level1 < array.length; level1++) {
@@ -67,6 +71,8 @@ export class GameScene extends Phaser.Scene {
                 }
             }
         }
+
+        */
         
         // while (level = 1) {
         //     for (let level1 = 0; level1 < array.length; level1++) {
@@ -83,7 +89,7 @@ export class GameScene extends Phaser.Scene {
         this.physics.add.collider(this.stars, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.enemy, this.platforms)
-        this.physics.add.collider(this.player, this.enemy)
+        this.physics.add.collider(this.player, this.enemy, this.colliderer)
         
         //this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
 
@@ -102,13 +108,21 @@ export class GameScene extends Phaser.Scene {
     //     //this.add.text(80, 50, `${score}`, { fontFamily: 'Arial Black', fontSize: 24, color: '#ffffff' }).setOrigin(0.5)
     // }
 
+    colliderer(object1: Player, object2: Enemy){
+            object1.x = 700;
+            console.log("Geraakt")
+    }
+
     update(){
         this.player.update()
 
         //dit zorgt dat de enemy links en rechts loopt
         setInterval(() => this.enemy.walkleft(),  100/300) 
         setInterval(() => this.enemy.walkright(),  100/100)
+
+     }
+     
         
     }
 
-}
+

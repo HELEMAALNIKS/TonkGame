@@ -1,8 +1,7 @@
-
-
 export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys
+    public div:HTMLElement
   
     constructor(scene) {
         super(scene, 1800, 450, "tonk")
@@ -15,7 +14,9 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.setCollideWorldBounds(true)
         this.setBounce(0.2)
         this.setDragX(600)
-     
+        
+        this.update
+    
     }
     walkleft(){
         this.setVelocityX(-1000)
@@ -24,18 +25,11 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.setVelocityX(1000)
     }
     
+
     public update(): void {
-        
-          
-           
-         
-    
     
     }
         
-           
-        
-        
-        
+   
     }
 
