@@ -4,6 +4,7 @@ import { MovingPlatform } from "../objects/movingplatform"
 import { StartScene } from "./start-scene";
 import { myVar } from "../objects/player"
 import { Enemy } from "../objects/enemy"
+import { Grounds } from "../objects/ground";
 
 export class GameScene extends Phaser.Scene {
 
@@ -11,14 +12,15 @@ export class GameScene extends Phaser.Scene {
     private platforms: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
     private enemy : Enemy
-
-    
+    private ground: Phaser.GameObjects.Group
 
     constructor() {
         super({ key: "GameScene" })
     }
 
-
+    preload() : void {
+        this.load.json('levels', 'assets/levels.json')
+    }
 
     init(): void {
         //this.registry.set("score", 0)
@@ -31,7 +33,6 @@ export class GameScene extends Phaser.Scene {
         // achtergrond herhalen
         for (let b = 0; b < this.physics.world.bounds.width; b=b+3420) {
             const element = this.physics.world.bounds.width[b];
-            console.log(b)
             this.add.image(b, 0, 'background').setOrigin(0, 0)
         }
     
@@ -47,51 +48,29 @@ export class GameScene extends Phaser.Scene {
         // Dit voegt de player toe
         this.player = new Player(this)
 
+        this.loadEnemies()
         // Dit voegt een enemy toe
         this.enemy = new Enemy(this)
 
         //platforms initieren
-        this.platforms = this.add.group({ runChildUpdate: true })
+        this.ground = this.add.group({ runChildUpdate: true })
 
         //ground herhalen
         for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
             const element = this.physics.world.bounds.width[i];
             let groundLength = i + 800
-            console.log(groundLength)
-            this.platforms.addMultiple([
-                new Platform(this, groundLength, 859, "ground"),
+            // console.log(groundLength)
+            this.ground.addMultiple([
+                new Grounds(this, groundLength, 859, "ground"),
             ], true)
         }
         
-
-        //platforms ophalen per level
-        //https://stackoverflow.com/questions/43726218/how-to-loop-through-a-json-object-with-typescript-angular2
-        /*function levelPlatforms() {
-            let level = 1
-            if (level == 1) {
-                for (let level1 = 0; level1 < array.length; level1++) {
-                    const element = array[level1];                
-                }
-            }
-        }*/
-
-        // while (level = 1) {
-        //     for (let level1 = 0; level1 < array.length; level1++) {
-        //         const element = array[level1];
-                
-        //         this.platforms.addMultiple([
-        //             new Platform(this, x, y, "platform"),
-        //         ], true)
-                
-        //     }
-        // }
-        
        // define collisions for bouncing, and overlaps for pickups
-        this.physics.add.collider(this.stars, this.platforms)
+        // this.physics.add.collider(this.stars, this.platforms)
+        this.physics.add.collider(this.player, this.ground)
         this.physics.add.collider(this.player, this.platforms)
+        this.physics.add.collider(this.enemy, this.ground)
         this.physics.add.collider(this.enemy, this.platforms)
-        
-        //this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
 
         //camera
         this.cameras.main.setSize(1440, 900) // canvas size
@@ -99,15 +78,41 @@ export class GameScene extends Phaser.Scene {
         this.cameras.main.startFollow(this.player)
     }
     
-    // private collectStar(player : Player , star) : void {
-    //     this.stars.remove(star, true, true)
-    //     this.registry.values.sore++
+    private loadEnemies() {
         
+        let levels = this.cache.json.get('levels')
+        // console.log(levels.level1.platforms[1].x)
+        this.platforms = this.add.group({ runChildUpdate: true })
 
-    //     // TO DO check if we have all the stars, then go to the end scene
-    //     //this.add.text(80, 50, `${score}`, { fontFamily: 'Arial Black', fontSize: 24, color: '#ffffff' }).setOrigin(0.5)
-    // }
+        let level = 1
+        for (let i = 0; i < 3; i++) {
+            const element = 3[i];
+            console.log(levels.level1.platforms[i].x)
+            this.platforms.addMultiple([
+                new Platform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture),
+            ], true)
+        }
 
+        // Niuewe optie toevoegen om ook het type platform in te stellen:
+        // let getal = 3
+        //     let platform : any
+        //     switch (getal) {
+        //         case 1: 
+        //             console.log("dit is 1");
+        //             platform = new Platform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture)
+        //             break
+        //         case 2: 
+        //             console.log("dit is 2");
+        //             platform = new MovingPlatform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture)
+        //             break
+        //     }
+
+        //     this.platforms.addMultiple([
+        //         platform
+        //     ], true)
+
+
+    }
     update(){
         this.player.update()
         this.enemy.update()
