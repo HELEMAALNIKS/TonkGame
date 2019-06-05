@@ -82,9 +82,27 @@ export class GameScene extends Phaser.Scene {
             const element = 3[i];
             console.log(levels.level1.platforms[i].x)
             this.platforms.addMultiple([
-                new MovingPlatform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture),
+                new Platform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture),
             ], true)
         }
+
+        // Niuewe optie toevoegen om ook het type platform in te stellen:
+        // let getal = 3
+        //     let platform : any
+        //     switch (getal) {
+        //         case 1: 
+        //             console.log("dit is 1");
+        //             platform = new Platform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture)
+        //             break
+        //         case 2: 
+        //             console.log("dit is 2");
+        //             platform = new MovingPlatform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture)
+        //             break
+        //     }
+
+        //     this.platforms.addMultiple([
+        //         platform
+        //     ], true)
 
 
     }
