@@ -3,16 +3,22 @@ import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
 import { StartScene } from "./start-scene";
 import { myVar } from "../objects/player"
+import { Enemy } from "../objects/enemy"
 
 export class GameScene extends Phaser.Scene {
 
     private player : Player
     private platforms: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
+    private enemy : Enemy
+
+    
 
     constructor() {
         super({ key: "GameScene" })
     }
+
+
 
     init(): void {
         //this.registry.set("score", 0)
@@ -22,6 +28,8 @@ export class GameScene extends Phaser.Scene {
     }
 
     create(): void {
+        // Hartje toevoegen
+        this.add.image(40, 50, 'heart')
 
         // achtergrond herhalen
         for (let b = 0; b < this.physics.world.bounds.width; b=b+3420) {
@@ -38,6 +46,9 @@ export class GameScene extends Phaser.Scene {
         // Dit voegt de player toe
         this.player = new Player(this)
 
+        // Dit voegt een enemy toe
+        this.enemy = new Enemy(this)
+
         //platforms initieren
         this.platforms = this.add.group({ runChildUpdate: true })
 
@@ -50,18 +61,19 @@ export class GameScene extends Phaser.Scene {
                 new Platform(this, groundLength, 859, "ground"),
             ], true)
         }
+        
 
         //platforms ophalen per level
         //https://stackoverflow.com/questions/43726218/how-to-loop-through-a-json-object-with-typescript-angular2
-        function levelPlatforms() {
+        /*function levelPlatforms() {
             let level = 1
             if (level == 1) {
                 for (let level1 = 0; level1 < array.length; level1++) {
                     const element = array[level1];                
                 }
             }
-        }
-        
+        }*/
+
         // while (level = 1) {
         //     for (let level1 = 0; level1 < array.length; level1++) {
         //         const element = array[level1];
@@ -76,6 +88,7 @@ export class GameScene extends Phaser.Scene {
        // define collisions for bouncing, and overlaps for pickups
         this.physics.add.collider(this.stars, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
+        this.physics.add.collider(this.enemy, this.platforms)
         
         //this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
 
@@ -87,7 +100,7 @@ export class GameScene extends Phaser.Scene {
     
     // private collectStar(player : Player , star) : void {
     //     this.stars.remove(star, true, true)
-    //     this.registry.values.score++
+    //     this.registry.values.sore++
         
 
     //     // TO DO check if we have all the stars, then go to the end scene
@@ -96,8 +109,7 @@ export class GameScene extends Phaser.Scene {
 
     update(){
         this.player.update()
-
-            this.add.image(40, 50, 'heart')
-            this.add.text(40, 50, myVar, { fontFamily: 'FUTURA', fontSize: 10, color: 'black' })       
+        this.enemy.update()
+        this.add.text(40, 50, myVar, { fontFamily: 'FUTURA', fontSize: 10, color: 'black' })       
     }
 }
