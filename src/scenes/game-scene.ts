@@ -93,7 +93,7 @@ export class GameScene extends Phaser.Scene {
             ], true)
         }
 
-        // Niuewe optie toevoegen om ook het type platform in te stellen:
+        // Nieuwe optie toevoegen om ook het type platform in te stellen:
         // let getal = 3
         //     let platform : any
         //     switch (getal) {
