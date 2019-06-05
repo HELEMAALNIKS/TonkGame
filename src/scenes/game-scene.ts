@@ -16,6 +16,8 @@ export class GameScene extends Phaser.Scene {
 
     constructor() {
         super({ key: "GameScene" })
+       
+       
     }
 
     preload() : void {
@@ -48,7 +50,7 @@ export class GameScene extends Phaser.Scene {
         // Dit voegt de player toe
         this.player = new Player(this)
 
-        this.loadEnemies()
+        this.loadPlatforms()
         // Dit voegt een enemy toe
         this.enemy = new Enemy(this)
 
@@ -71,6 +73,7 @@ export class GameScene extends Phaser.Scene {
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.enemy, this.ground)
         this.physics.add.collider(this.enemy, this.platforms)
+        this.physics.add.collider(this.player, this.enemy, this.colliderer)
 
         //camera
         this.cameras.main.setSize(1440, 900) // canvas size
@@ -78,7 +81,7 @@ export class GameScene extends Phaser.Scene {
         this.cameras.main.startFollow(this.player)
     }
     
-    private loadEnemies() {
+    private loadPlatforms() {
         
         let levels = this.cache.json.get('levels')
         // console.log(levels.level1.platforms[1].x)
@@ -92,6 +95,7 @@ export class GameScene extends Phaser.Scene {
                 new Platform(this, levels.level1.platforms[i].x, levels.level1.platforms[i].y, levels.level1.platforms[i].texture),
             ], true)
         }
+    }
 
         // Nieuwe optie toevoegen om ook het type platform in te stellen:
         // let getal = 3
@@ -107,15 +111,20 @@ export class GameScene extends Phaser.Scene {
         //             break
         //     }
 
-        //     this.platforms.addMultiple([
-        //         platform
-        //     ], true)
 
-
+    colliderer(object1: Player, object2: Enemy){
+            object1.x = 700;
+            console.log("Geraakt")
     }
+
     update(){
         this.player.update()
-        this.enemy.update()
-        // this.add.text(40, 50, `x ${myVar}`, { fontFamily: 'FUTURA', fontSize: 10, color: 'black' })       
+
+        //dit zorgt dat de enemy links en rechts loopt
+        setInterval(() => this.enemy.walkleft(),  100/300) 
+        setInterval(() => this.enemy.walkright(),  100/100)
+
+     }
+
     }
-}
+     

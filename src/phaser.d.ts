@@ -46916,6 +46916,7 @@ declare namespace Phaser {
              * You can access it from within a Scene using `this.physics`.
              */
             class ArcadePhysics {
+                [x: string]: any;
                 /**
                  * 
                  * @param scene The Scene that this Plugin belongs to.

@@ -1,11 +1,16 @@
+import { Enemy } from "./enemy";
+
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
-    private cursors: Phaser.Input.Keyboard.CursorKey   
+    private cursors: Phaser.Input.Keyboard.CursorKeys   
     public health = 3
+    private enemy : Enemy 
+    public div:HTMLElement
+  
 
     constructor(scene) {
         super(scene, 100, 450, "tonk")
-
+        
         this.cursors = this.scene.input.keyboard.createCursorKeys()
         
         this.scene.add.existing(this)
@@ -13,16 +18,22 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
         this.setCollideWorldBounds(true)
         this.setBounce(0.2)
-        this.setDragX(600)
+        this.setDragX(5000)
+        this.setGravityY(1000)
+        this.setGravityX(200)
+       
+        this.update()
+       
     }
 
+   
     public update(): void {
         
         if (this.cursors.left.isDown) {
-            this.setVelocityX(-200)
+            this.setVelocityX(-400)
             this.flipX = true
         } else if (this.cursors.right.isDown) {
-            this.setVelocityX(200)
+            this.setVelocityX(400)
             this.flipX = false
         } 
         
@@ -30,7 +41,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         
         let grounded = this.body.touching.down 
         if (this.cursors.space.isDown && grounded) {
-            this.setVelocityY(-200)
+            this.setVelocityY(-1000)
         }
     }
 }
