@@ -1,4 +1,5 @@
 import { Enemy } from "./enemy";
+import {Arcade} from "./arcade"
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
@@ -6,7 +7,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     public health = 3
     private enemy : Enemy 
     public div:HTMLElement
-  
+    private arcade: Arcade;
 
     constructor(scene) {
         super(scene, 100, 450, "tonk")
@@ -38,11 +39,24 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         } 
         
         // jump when the body is touching the floor
+        // for(let joystick of this.arcade.Joysticks){
+        //     joystick.update()
+
+            //console.log("hey")
         
         let grounded = this.body.touching.down 
         if (this.cursors.space.isDown && grounded) {
             this.setVelocityY(-1000)
         }
+    
+        //export var myVar = this.health;
+
+        // let grounded = this.body.touching.down 
+        // if ( joystick.Up && grounded) {
+        //     this.setVelocityY(-200)
+        // }}
+        
     }
 }
-export var myVar = this.health;
+
+

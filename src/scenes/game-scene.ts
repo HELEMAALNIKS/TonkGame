@@ -2,21 +2,35 @@ import { Player } from "../objects/player"
 import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
 import { StartScene } from "./start-scene";
-import { myVar } from "../objects/player"
+//import { myVar } from "../objects/player"
 import { Enemy } from "../objects/enemy"
 import { Grounds } from "../objects/ground";
+import {Joystick} from "../objects/joystick"
+import { Arcade } from "../objects/arcade"
+
+
+
 
 export class GameScene extends Phaser.Scene {
+   
 
     private player : Player
     private platforms: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
     private enemy : Enemy
     private ground: Phaser.GameObjects.Group
+    private arcade: Arcade;
 
     constructor() {
         super({ key: "GameScene" })
        
+        this.arcade = new Arcade()
+        
+        document.addEventListener("joystick0button0", () => this.playerOneFire())
+    }
+
+    private playerOneFire(): void {
+        console.log("FIRE!");
        
     }
 
@@ -119,6 +133,22 @@ export class GameScene extends Phaser.Scene {
 
     update(){
         this.player.update()
+        this.enemy.update()
+        
+        for(let joystick of this.arcade.Joysticks){
+            joystick.update()
+            
+            // just log the values
+            if(joystick.Left)  console.log('LEFT')
+            if(joystick.Right) console.log('RIGHT')
+            if(joystick.Up)    console.log('UP')
+            if(joystick.Down)  console.log('Down')
+            
+            // use the values to set X and Y velocity of a player
+            this.player.setVelocityX(joystick.X * 400)
+            this.player.setVelocityY(joystick.Y * 400)
+        
+    
 
         //dit zorgt dat de enemy links en rechts loopt
         setInterval(() => this.enemy.walkleft(),  100/300) 
@@ -127,4 +157,5 @@ export class GameScene extends Phaser.Scene {
      }
 
     }
-     
+}
+    
