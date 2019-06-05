@@ -28,15 +28,16 @@ export class GameScene extends Phaser.Scene {
     }
 
     create(): void {
-        // Hartje toevoegen
-        this.add.image(40, 50, 'heart')
-
         // achtergrond herhalen
         for (let b = 0; b < this.physics.world.bounds.width; b=b+3420) {
             const element = this.physics.world.bounds.width[b];
             console.log(b)
             this.add.image(b, 0, 'background').setOrigin(0, 0)
         }
+    
+        // Hartje toevoegen
+        this.add.image(40, 50, 'heart')
+        this.add.text(70, 30, `X 1`, { fontFamily: 'FUTURA', fontSize: 30, color: 'black' })   
 
         // 11 STARS
         this.stars = this.physics.add.group({
@@ -110,6 +111,6 @@ export class GameScene extends Phaser.Scene {
     update(){
         this.player.update()
         this.enemy.update()
-        this.add.text(40, 50, myVar, { fontFamily: 'FUTURA', fontSize: 10, color: 'black' })       
+        // this.add.text(40, 50, `x ${myVar}`, { fontFamily: 'FUTURA', fontSize: 10, color: 'black' })       
     }
 }
