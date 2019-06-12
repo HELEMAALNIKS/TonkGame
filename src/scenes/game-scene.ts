@@ -127,15 +127,12 @@ export class GameScene extends Phaser.Scene {
 
 
     colliderer(object1: Player, object2: Enemy){
-
-        // object1.div.remove()
-        //  object1.destroy()
             console.log(this)
             console.log("Geraakt")
             object2.destroy()
+            object1.x = 0
             
-        //    this.scene.start('GameScene')
-
+        
     }
 
     update(){
