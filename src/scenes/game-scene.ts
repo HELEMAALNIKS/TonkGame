@@ -11,9 +11,9 @@ import { Arcade } from "../objects/arcade"
 
 
 
+
 export class GameScene extends Phaser.Scene {
    
-
     private player : Player
     private platforms: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
@@ -127,13 +127,20 @@ export class GameScene extends Phaser.Scene {
 
 
     colliderer(object1: Player, object2: Enemy){
-            object1.x = 700;
+
+        // object1.div.remove()
+        //  object1.destroy()
+            console.log(this)
             console.log("Geraakt")
+            object2.destroy()
+            
+        //    this.scene.start('GameScene')
+
     }
 
     update(){
         this.player.update()
-        this.enemy.update()
+        this.enemy.update() 
         
         for(let joystick of this.arcade.Joysticks){
             joystick.update()
@@ -150,11 +157,12 @@ export class GameScene extends Phaser.Scene {
         
     
 
-        //dit zorgt dat de enemy links en rechts loopt
-        setInterval(() => this.enemy.walkleft(),  100/300) 
-        setInterval(() => this.enemy.walkright(),  100/100)
+      
 
      }
+       //dit zorgt dat de enemy links en rechts loopt
+       setInterval(() => this.enemy.walkleft(),  100/300) 
+       setInterval(() => this.enemy.walkright(),  100/100)
 
     }
 }
