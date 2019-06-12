@@ -5,8 +5,7 @@ import { StartScene } from "./start-scene";
 //import { myVar } from "../objects/player"
 import { Enemy } from "../objects/enemy"
 import { Grounds } from "../objects/ground";
-import {Joystick} from "../objects/joystick"
-import { Arcade } from "../objects/arcade"
+import { Game } from "../app";
 
 
 
@@ -19,19 +18,10 @@ export class GameScene extends Phaser.Scene {
     private stars: Phaser.Physics.Arcade.Group
     private enemy : Enemy
     private ground: Phaser.GameObjects.Group
-    private arcade: Arcade;
+    private jumpListener: EventListener
 
     constructor() {
         super({ key: "GameScene" })
-       
-        this.arcade = new Arcade()
-        
-        document.addEventListener("joystick0button0", () => this.playerOneFire())
-    }
-
-    private playerOneFire(): void {
-        console.log("FIRE!");
-       
     }
 
     preload() : void {
@@ -46,6 +36,10 @@ export class GameScene extends Phaser.Scene {
     }
 
     create(): void {
+        // button event voor jump toevoegen
+        this.jumpListener = () => this.jump()
+        document.addEventListener("joystick0button0", this.jumpListener)
+
         // achtergrond herhalen
         for (let b = 0; b < this.physics.world.bounds.width; b=b+3420) {
             const element = this.physics.world.bounds.width[b];
@@ -94,6 +88,10 @@ export class GameScene extends Phaser.Scene {
         this.cameras.main.setBounds(0, 0, 5760, 900) //world size
         this.cameras.main.startFollow(this.player)
     }
+    private jump(): void {
+        console.log("Jump")
+        this.player.jump()
+    }
     
     private loadPlatforms() {
         
@@ -135,26 +133,26 @@ export class GameScene extends Phaser.Scene {
         this.player.update()
         this.enemy.update()
         
-        for(let joystick of this.arcade.Joysticks){
+        for(let joystick of (this.game as Game).Arcade.Joysticks){
             joystick.update()
             
             // just log the values
-            if(joystick.Left)  console.log('LEFT')
-            if(joystick.Right) console.log('RIGHT')
-            if(joystick.Up)    console.log('UP')
-            if(joystick.Down)  console.log('Down')
+            // if(joystick.Left)  console.log('LEFT')
+            // if(joystick.Right) console.log('RIGHT')
+            // if(joystick.Up)    console.log('UP')
+            // if(joystick.Down)  console.log('Down')
             
             // use the values to set X and Y velocity of a player
             this.player.setVelocityX(joystick.X * 400)
-            this.player.setVelocityY(joystick.Y * 400)
+            // this.player.setVelocityY(joystick.Y * 400)
         
     
 
-        //dit zorgt dat de enemy links en rechts loopt
-        setInterval(() => this.enemy.walkleft(),  100/300) 
-        setInterval(() => this.enemy.walkright(),  100/100)
+            //dit zorgt dat de enemy links en rechts loopt
+            setInterval(() => this.enemy.walkleft(),  100/300) 
+            setInterval(() => this.enemy.walkright(),  100/100)
 
-     }
+        }
 
     }
 }

@@ -1,12 +1,9 @@
 import { listeners } from "cluster";
-import {Joystick} from "../objects/joystick"
-import { Arcade } from "../objects/arcade"
-
-
-
-
+import { Game } from "../app";
 
 export class StartScene extends Phaser.Scene {
+
+    private buttonListener : EventListener
 
     constructor() {
         super({key: "StartScene"})
@@ -19,6 +16,9 @@ export class StartScene extends Phaser.Scene {
     }
 
     create(): void {
+        this.buttonListener = () => this.nextScene()
+        document.addEventListener("joystick0button0", this.buttonListener)
+
         this.add.image(0, 0, 'background').setOrigin(0, 0)
 
         // add another image here
@@ -29,7 +29,20 @@ export class StartScene extends Phaser.Scene {
 
         // add code here to switch to the GameScene, after a mouse click
         this.input.once('pointerdown', () => {
-            this.scene.start('GameScene')
+            this.nextScene()
+            
         })
     }
+
+    public update() {
+        console.log("update");
+        (this.game as Game).Arcade.Joysticks.forEach(j => j.update())
+    }
+    private nextScene() {
+        console.log("button") 
+        document.removeEventListener("joystick0button0", this.buttonListener)
+        this.scene.start('GameScene')
+    }
 }
+
+

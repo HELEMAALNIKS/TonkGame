@@ -1,5 +1,5 @@
 import { Enemy } from "./enemy";
-import {Arcade} from "./arcade"
+import { Arcade } from "../arcade/arcade";
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
@@ -44,9 +44,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
             //console.log("hey")
         
-        let grounded = this.body.touching.down 
-        if (this.cursors.space.isDown && grounded) {
-            this.setVelocityY(-1000)
+        if (this.cursors.space.isDown) {
+            this.jump()
         }
     
         //export var myVar = this.health;
@@ -56,6 +55,13 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         //     this.setVelocityY(-200)
         // }}
         
+    }
+
+    public jump() {
+        let grounded = this.body.touching.down
+        if (grounded) {
+            this.setVelocityY(-1000)
+        }
     }
 }
 
