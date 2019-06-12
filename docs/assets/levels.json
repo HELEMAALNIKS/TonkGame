@@ -7,18 +7,18 @@
                 "texture": "platform",
                 "type": "Platform"
             },{
-                "x": 100,
-                "y": 100,
-                "texture": "platform",
-                "type": "Platform"
-            },{
-                "x": 100,
-                "y": 100,
+                "x": 400,
+                "y": 400,
                 "texture": "platform",
                 "type": "Platform"
             },{
                 "x": 800,
-                "y": 400,
+                "y": 500,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 800,
+                "y": 420,
                 "texture": "platform",
                 "type": "Platform"
             },{

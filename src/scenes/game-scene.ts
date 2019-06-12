@@ -88,7 +88,7 @@ export class GameScene extends Phaser.Scene {
         this.platforms = this.add.group({ runChildUpdate: true })
 
         let level = 1
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 5; i++) {
             const element = 3[i];
             console.log(levels.level1.platforms[i].x)
             this.platforms.addMultiple([
@@ -113,7 +113,7 @@ export class GameScene extends Phaser.Scene {
 
 
     colliderer(object1: Player, object2: Enemy){
-            object1.x = 700;
+            object1.x = 700
             console.log("Geraakt")
     }
 
