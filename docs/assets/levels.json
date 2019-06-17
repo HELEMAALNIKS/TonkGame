@@ -7,33 +7,33 @@
                 "texture": "platform",
                 "type": "Platform"
             },{
-                "x": 100,
-                "y": 100,
+                "x": 900,
+                "y": 200,
                 "texture": "platform",
                 "type": "Platform"
             },{
-                "x": 100,
-                "y": 100,
-                "texture": "platform",
-                "type": "Platform"
-            },{
-                "x": 800,
-                "y": 400,
-                "texture": "platform",
-                "type": "Platform"
-            },{
-                "x": 1000,
+                "x": 500,
                 "y": 500,
                 "texture": "platform",
                 "type": "Platform"
             },{
-                "x": 1200,
-                "y": 600,
+                "x": 1800,
+                "y": 400,
                 "texture": "platform",
                 "type": "Platform"
             },{
-                "x": 1400,
+                "x": 1200,
                 "y": 700,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2000,
+                "y": 700,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2000,
+                "y": 900,
                 "texture": "platform",
                 "type": "Platform"
             },{
