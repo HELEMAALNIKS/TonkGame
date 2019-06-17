@@ -132,7 +132,6 @@ export class GameScene extends Phaser.Scene {
         //             break
         //     }
 
-
     colliderer(object1: Player, object2: Enemy){
             object1.x = 700;
             console.log("Geraakt")

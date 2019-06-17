@@ -19,7 +19,7 @@ export class BootScene extends Phaser.Scene {
         this.load.image('platform', require('../assets/platform_grass.png'))
         this.load.image('ground', require('../assets/platform_ground.png'))
         this.load.image('alien_hat', require('../assets/alien4ushankahat.png'))
-
+        this.load.audio('music', require('../assets/music.mp3'))
 
         this.load.on('complete', () => {
             console.log("everything is loaded")
@@ -28,3 +28,5 @@ export class BootScene extends Phaser.Scene {
         })
     }
 }
+
+
