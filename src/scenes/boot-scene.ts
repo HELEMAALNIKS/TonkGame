@@ -18,6 +18,7 @@ export class BootScene extends Phaser.Scene {
         this.load.image('ice', require('../assets/platform_ice.png'))
         this.load.image('platform', require('../assets/platform_grass.png'))
         this.load.image('ground', require('../assets/platform_ground.png'))
+        this.load.image('alien_hat', require('../assets/alien4ushankahat.png'))
 
 
         this.load.on('complete', () => {

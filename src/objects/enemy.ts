@@ -4,7 +4,7 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
     public div:HTMLElement
   
     constructor(scene) {
-        super(scene, 1800, 450, "tonk")
+        super(scene, 1800, 450, "alien_hat")
 
         this.cursors = this.scene.input.keyboard.createCursorKeys()
         
