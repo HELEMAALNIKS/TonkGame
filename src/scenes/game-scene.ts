@@ -16,7 +16,9 @@ export class GameScene extends Phaser.Scene {
     private player : Player
     private platforms: Phaser.GameObjects.Group
     private stars: Phaser.Physics.Arcade.Group
-    private enemy : Enemy
+
+    private enemies : Phaser.Physics.Arcade.Group
+
     private ground: Phaser.GameObjects.Group
     private jumpListener: EventListener
 
@@ -68,12 +70,17 @@ export class GameScene extends Phaser.Scene {
         this.player = new Player(this)
 
         this.loadPlatforms()
+
         // Dit voegt een enemy toe
-        this.enemy = new Enemy(this)
+      
+       
 
         //platforms initieren
         this.ground = this.add.group({ runChildUpdate: true })
+        this.enemies = this.add.group({ runChildUpdate: true })
 
+        this.enemies.add(new Enemy(this, 1000, 200, "tonk"))
+        this.enemies.add(new Enemy(this, 500, 200, "tonk"))
         //ground herhalen
         for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
             const element = this.physics.world.bounds.width[i];
@@ -88,9 +95,10 @@ export class GameScene extends Phaser.Scene {
         // this.physics.add.collider(this.stars, this.platforms)
         this.physics.add.collider(this.player, this.ground)
         this.physics.add.collider(this.player, this.platforms)
-        this.physics.add.collider(this.enemy, this.ground)
-        this.physics.add.collider(this.enemy, this.platforms)
-        this.physics.add.collider(this.player, this.enemy, this.colliderer)
+        this.physics.add.collider(this.enemies, this.ground)
+        this.physics.add.collider(this.enemies, this.platforms, this.onBouncePlatform)
+     
+        this.physics.add.collider(this.player, this.enemies, this.colliderer)
 
         //camera
         this.cameras.main.setSize(1440, 900) // canvas size
@@ -101,6 +109,12 @@ export class GameScene extends Phaser.Scene {
         console.log("Jump")
         this.player.jump()
     }
+
+    private onBouncePlatform(enemy : Enemy, platform : Platform) {
+        if(platform.body.touching.left || platform.body.touching.right) {
+            enemy.onCollision()
+        }
+    }
     
     private loadPlatforms() {
         
@@ -109,7 +123,7 @@ export class GameScene extends Phaser.Scene {
         this.platforms = this.add.group({ runChildUpdate: true })
 
         let level = 1
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 14; i++) {
             const element = 3[i];
             console.log(levels.level1.platforms[i].x)
             this.platforms.addMultiple([
@@ -140,7 +154,7 @@ export class GameScene extends Phaser.Scene {
 
     update(){
         this.player.update()
-        this.enemy.update()
+
         
         for(let joystick of (this.game as Game).Arcade.Joysticks){
             joystick.update()
@@ -158,9 +172,12 @@ export class GameScene extends Phaser.Scene {
     
         }
             //dit zorgt dat de enemy links en rechts loopt
-            setInterval(() => this.enemy.walkleft(),  100/300) 
-            setInterval(() => this.enemy.walkright(),  100/100)
+            
 
+            // for (const enemy of this.enemies.getChildren()) {
+            //     let e = enemy as Enemy
+            //     e.update
+            // }
         
 
     }

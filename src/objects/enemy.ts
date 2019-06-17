@@ -2,9 +2,10 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys
     public div:HTMLElement
+    private direction : number = 1
   
-    constructor(scene) {
-        super(scene, 1800, 450, "alien_hat")
+    constructor(scene, x: number, y: number, texture:string) {
+        super(scene, x, y, "alien_hat")
 
         this.cursors = this.scene.input.keyboard.createCursorKeys()
         
@@ -18,17 +19,14 @@ export class Enemy extends Phaser.Physics.Arcade.Sprite {
         this.update
     
     }
-    walkleft(){
-        this.setVelocityX(-1000)
-    }
-    walkright(){
-        this.setVelocityX(1000)
-    }
     
 
     public update(): void {
-    
+        this.setVelocityX(500 * this.direction)
     }
-        
+       
+    public onCollision() {
+        this.direction *= -1
+    }
    
     }

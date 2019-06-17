@@ -37,8 +37,38 @@
                 "texture": "platform",
                 "type": "Platform"
             },{
-                "x": 1600,
+                "x": 2100,
                 "y": 800,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2500,
+                "y": 400,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2000,
+                "y": 900,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2800,
+                "y": 900,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2000,
+                "y": 900,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2000,
+                "y": 900,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2000,
+                "y": 900,
                 "texture": "platform",
                 "type": "Platform"
             }
