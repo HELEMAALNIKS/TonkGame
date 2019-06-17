@@ -22,6 +22,15 @@ export class GameScene extends Phaser.Scene {
 
     constructor() {
         super({ key: "GameScene" })
+
+        document.addEventListener("joystick0button8", () => this.leave())
+        document.addEventListener("joystick0button9", () => this.leave())
+
+
+    }
+
+    private leave(){
+        window.location.href = "http://hr-cmgt.github.io/arcade-server"
     }
 
     preload() : void {
