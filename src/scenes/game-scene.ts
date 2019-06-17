@@ -79,8 +79,10 @@ export class GameScene extends Phaser.Scene {
         this.ground = this.add.group({ runChildUpdate: true })
         this.enemies = this.add.group({ runChildUpdate: true })
 
-        this.enemies.add(new Enemy(this, 1000, 200, "tonk"))
-        this.enemies.add(new Enemy(this, 500, 200, "tonk"))
+        this.enemies.add(new Enemy(this, 1000, 200, "alien_hat"))
+        this.enemies.add(new Enemy(this, 4000, 200, "alien_hat"))
+        this.enemies.add(new Enemy(this, 2500, 200, "alien_hat"))
+        this.enemies.add(new Enemy(this, 1800, 200, "alien_hat"))
         //ground herhalen
         for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
             const element = this.physics.world.bounds.width[i];

@@ -33,7 +33,7 @@
                 "type": "Platform"
             },{
                 "x": 2000,
-                "y": 900,
+                "y": 600,
                 "texture": "platform",
                 "type": "Platform"
             },{
@@ -48,27 +48,27 @@
                 "type": "Platform"
             },{
                 "x": 2000,
-                "y": 900,
+                "y": 600,
                 "texture": "platform",
                 "type": "Platform"
             },{
                 "x": 2800,
-                "y": 900,
+                "y": 600,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 4000,
+                "y": 800,
+                "texture": "platform",
+                "type": "Platform"
+            },{
+                "x": 2100,
+                "y": 800,
                 "texture": "platform",
                 "type": "Platform"
             },{
                 "x": 2000,
-                "y": 900,
-                "texture": "platform",
-                "type": "Platform"
-            },{
-                "x": 2000,
-                "y": 900,
-                "texture": "platform",
-                "type": "Platform"
-            },{
-                "x": 2000,
-                "y": 900,
+                "y": 300,
                 "texture": "platform",
                 "type": "Platform"
             }
