@@ -71,6 +71,9 @@ export class GameScene extends Phaser.Scene {
         // Dit voegt een enemy toe
         this.enemy = new Enemy(this)
 
+        //Dit speelt muziek af
+        this.playAudio()
+
         //platforms initieren
         this.ground = this.add.group({ runChildUpdate: true })
 
@@ -101,6 +104,12 @@ export class GameScene extends Phaser.Scene {
         console.log("Jump")
         this.player.jump()
     }
+    
+    playAudio() {
+        this.game.sound.setDetune
+        let music = this.sound.add('music');
+    }
+
     
     private loadPlatforms() {
         
@@ -136,6 +145,8 @@ export class GameScene extends Phaser.Scene {
             object1.x = 700;
             console.log("Geraakt")
     }
+
+
 
     update(){
         this.player.update()
