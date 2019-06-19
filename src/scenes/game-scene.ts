@@ -6,6 +6,7 @@ import { StartScene } from "./start-scene";
 import { Enemy } from "../objects/enemy"
 import { Grounds } from "../objects/ground";
 import { Game } from "../app";
+import { Heart } from "../objects/heart"
 
 
 
@@ -21,6 +22,11 @@ export class GameScene extends Phaser.Scene {
 
     private ground: Phaser.GameObjects.Group
     private jumpListener: EventListener
+
+  
+    private heartOne : Heart
+    private heartTwo : Heart
+    private heartThree : Heart
 
     constructor() {
         super({ key: "GameScene" })
@@ -58,8 +64,11 @@ export class GameScene extends Phaser.Scene {
         }
     
         // Hartje toevoegen
-        this.add.image(40, 50, 'heart')
-        this.add.text(70, 30, `X 1`, { fontFamily: 'FUTURA', fontSize: 30, color: 'black' })   
+       
+ 
+
+      // x = player x - coordinaten
+     //   this.add.text(70, 30, `X 1`, { fontFamily: 'FUTURA', fontSize: 30, color: 'black' })   
 
         // 11 STARS
         this.stars = this.physics.add.group({
@@ -106,6 +115,16 @@ export class GameScene extends Phaser.Scene {
         this.cameras.main.setSize(1440, 900) // canvas size
         this.cameras.main.setBounds(0, 0, 5760, 900) //world size
         this.cameras.main.startFollow(this.player)
+
+        
+
+        // this.heartOne = this.add.image(this.heartOneX, this.heartOneY, 'heart')
+        // this.heartTwo = this.add.image(100, 50, 'heart')
+        // this.heartThree = this.add.image(160, 50, 'heart')
+
+        this.heartOne = new Heart(this, this.player.x, this.player.y, 'heart')
+
+        
     }
     private jump(): void {
         console.log("Jump")
@@ -191,8 +210,19 @@ export class GameScene extends Phaser.Scene {
             console.log("Game over")
             this.gameOver()
         }
+
+        this.heartOne.x = this.player.x
+        this.heartOne.y = this.player.y - 100
+
+        // this.heartOneX = this.player.x
+        // this.heartOneY = this.player.y - 100
+
+        // this.heartOne set
         
+       
+
+       
+
 
     }
 }
-    
