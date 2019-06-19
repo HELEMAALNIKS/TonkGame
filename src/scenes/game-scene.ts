@@ -97,7 +97,8 @@ export class GameScene extends Phaser.Scene {
 
         this.loadPlatforms()
 
-        // Dit voegt een enemy toe
+        // Dit voegt de hammer toe
+        this.hammer = new Hammer(this, this.player.x, this.player.y, 'hammerup')
       
        
 
@@ -127,7 +128,7 @@ export class GameScene extends Phaser.Scene {
         this.physics.add.collider(this.enemies, this.platforms, this.onBouncePlatform)
      
         this.physics.add.collider(this.player, this.enemies, this.colliderer)
-        this.physics.add.collider(this.hammer, this.enemies, this.hammercolliderer)
+        this.physics.add.collider(this.hammer, this.enemies, this.hammerColliderer)
 
         //camera
         this.cameras.main.setSize(1440, 900) // canvas size
@@ -140,7 +141,7 @@ export class GameScene extends Phaser.Scene {
         this.heartTwo = new Heart(this, this.player.x, this.player.y, 'heart')
         this.heartThree = new Heart(this, this.player.x, this.player.y, 'heart')
 
-        this.hammer = new Hammer(this, this.player.x, this.player.y, 'hammerup')
+      
         this.canHit = true
 
     
@@ -229,8 +230,8 @@ export class GameScene extends Phaser.Scene {
             object1.health -= 1
     }
 
-    public hammercolliderer(object1: Hammer, object2: Enemy){
-        object2.remove()
+    public hammerColliderer(object1: Hammer, object2: Enemy){
+        object2.x = -200000
     }
 
     update(){
