@@ -3,7 +3,7 @@ import { Arcade } from "../arcade/arcade";
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
-    private cursors: Phaser.Input.Keyboard.CursorKeys   
+    public cursors: Phaser.Input.Keyboard.CursorKeys   
     public health : number
     private enemy : Enemy 
     public div:HTMLElement

@@ -4,7 +4,8 @@ import { Game } from "../app";
 export class StartScene extends Phaser.Scene {
 
     private buttonListener : EventListener
-
+    private putin : object
+    
     constructor() {
         super({key: "StartScene"})
     }
@@ -32,6 +33,8 @@ export class StartScene extends Phaser.Scene {
             this.nextScene()
             
         })
+
+       var putinplaatje = this.add.image(100,200,"putinplaatje")
     }
 
     public update() {

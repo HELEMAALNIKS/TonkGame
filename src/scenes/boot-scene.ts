@@ -19,7 +19,10 @@ export class BootScene extends Phaser.Scene {
         this.load.image('platform', require('../assets/platform_grass.png'))
         this.load.image('ground', require('../assets/platform_ground.png'))
         this.load.image('alien_hat', require('../assets/alien4ushankahat.png'))
-
+        this.load.image('hammer', require('../assets/hamerspritesheetclean.png'))
+        this.load.image('hammerup', require('../assets/hammerupnew.png'))
+        this.load.image('hammerdown', require('../assets/hammerdownnew.png'))
+        this.load.image('putinplaatje', require('../assets/putin.png'))
 
         this.load.on('complete', () => {
             console.log("everything is loaded")
