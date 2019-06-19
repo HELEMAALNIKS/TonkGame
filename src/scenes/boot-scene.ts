@@ -24,6 +24,8 @@ export class BootScene extends Phaser.Scene {
         this.load.image('hammerdown', require('../assets/hammerdownnew.png'))
         this.load.image('putinplaatje', require('../assets/putin.png'))
 
+        this.load.audio('slavking', ['assets/SLAV_KING_Boris_vs._DJ_Blyatman.hd.mp3', 'assets/audio/bodenstaendig_2000_in_rock_4bit.ogg']);
+    
         this.load.on('complete', () => {
             console.log("everything is loaded")
             // add code here to switch to the start scene
