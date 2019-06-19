@@ -4,7 +4,7 @@ import { Arcade } from "../arcade/arcade";
 export class Player extends Phaser.Physics.Arcade.Sprite {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys   
-    public health = 3
+    public health : number
     private enemy : Enemy 
     public div:HTMLElement
     private arcade: Arcade;
@@ -22,6 +22,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.setDragX(5000)
         this.setGravityY(1000)
         this.setGravityX(200)
+        this.health = 3
        
         this.update()
        

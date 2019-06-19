@@ -134,6 +134,11 @@ export class GameScene extends Phaser.Scene {
         }
     }
 
+    private gameOver(){
+        this.scene.start("StartScene")
+    }
+    
+
         // Nieuwe optie toevoegen om ook het type platform in te stellen:
         // let getal = 3
         //     let platform : any
@@ -150,8 +155,9 @@ export class GameScene extends Phaser.Scene {
 
 
     colliderer(object1: Player, object2: Enemy){
-            object1.x = 700;
+            object1.x = 70;
             console.log("Geraakt")
+            object1.health -= 1
     }
 
     update(){
@@ -180,6 +186,11 @@ export class GameScene extends Phaser.Scene {
             //     let e = enemy as Enemy
             //     e.update
             // }
+
+        if(this.player.health == 0){
+            console.log("Game over")
+            this.gameOver()
+        }
         
 
     }
