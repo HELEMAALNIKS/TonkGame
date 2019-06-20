@@ -234,7 +234,9 @@ export class GameScene extends Phaser.Scene {
     }
 
     public hammerColliderer(object1: Hammer, object2: Enemy){
-        object2.x = -200000
+        if(this.canHit == false) {
+            object2.x = -200000
+        }
     }
 
     update(){
