@@ -6,6 +6,7 @@ import { StartScene } from "./start-scene";
 import { Enemy } from "../objects/enemy"
 import { Grounds } from "../objects/ground";
 import { Game } from "../app";
+import { GameOverScene } from "./game-over-scene";
 
 
 
