@@ -16,8 +16,8 @@ export class GameOverScene extends Phaser.Scene {
     }
 
     create(): void {
-        // this.buttonListener = () => this.nextScene()
-        // document.addEventListener("joystick0button0", this.buttonListener)
+        this.buttonListener = () => this.nextScene()
+        document.addEventListener("joystick0button0", this.buttonListener)
 
         this.add.image(0, 0, 'background').setOrigin(0, 0)
 
