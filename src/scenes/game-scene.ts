@@ -11,8 +11,6 @@ import { Hammer } from "../objects/hammer";
 
 
 
-
-
 export class GameScene extends Phaser.Scene {
    
 
@@ -35,6 +33,8 @@ export class GameScene extends Phaser.Scene {
 
     private cursors: Phaser.Input.Keyboard.CursorKeys   
     private canHit : boolean
+
+    private  overlapCollider
 
 
 
@@ -98,7 +98,7 @@ export class GameScene extends Phaser.Scene {
         this.loadPlatforms()
 
         // Dit voegt de hammer toe
-        this.hammer = new Hammer(this, this.player.x, this.player.y, 'hammerup')
+        this.hammer = new Hammer(this, this.player, 'hammerup')
       
        
 
@@ -131,7 +131,9 @@ export class GameScene extends Phaser.Scene {
         this.physics.add.collider(this.enemies, this.platforms, this.onBouncePlatform)
      
         this.physics.add.collider(this.player, this.enemies, this.colliderer)
-        this.physics.add.collider(this.hammer, this.enemies, this.hammerColliderer)
+      
+        this.physics.add.overlap(this.hammer, this.enemies, (hammer : Hammer, enemy : Enemy) => this.hammerColliderer(hammer, enemy));
+        
 
         //camera
         this.cameras.main.setSize(1440, 900) // canvas size
@@ -140,12 +142,11 @@ export class GameScene extends Phaser.Scene {
 
         
 
-        this.heartOne = new Heart(this, this.player.x, this.player.y, 'heart')
-        this.heartTwo = new Heart(this, this.player.x, this.player.y, 'heart')
-        this.heartThree = new Heart(this, this.player.x, this.player.y, 'heart')
+        this.heartOne   = new Heart(this, this.player, -30  , 'heart')
+        this.heartTwo   = new Heart(this, this.player, 0    , 'heart')
+        this.heartThree = new Heart(this, this.player, 30   , 'heart')
 
-      
-        this.canHit = true
+        this.canHit = false
 
     
     }
@@ -158,20 +159,24 @@ export class GameScene extends Phaser.Scene {
     private enableHammer(){
         
         this.hammer.setTexture('hammerup')
-        this.canHit = true
+        this.canHit = false
+        this.hammer.canNotHit()
+        console.log("Kan weer slaan")
 
     }
 
     public attack(){
-        console.log("Attack")
-
-            if (this.canHit == true) {
-                this.hammer.setTexture('hammerdown')
-               
-                this.canHit = false
-    
-                this.time.delayedCall(300, this.enableHammer, [], this)
-            }
+        
+        if (!this.canHit) {
+            console.log("Attack")
+            this.hammer.setTexture('hammerdown')
+            
+            this.canHit = true
+            this.hammer.canHit()
+            console.log("kan niet slaan")
+            
+            this.time.delayedCall(100, () => this.enableHammer(), [], this)
+        }
     }
         // this.hammer.x = this.player.x + 60
         // this.hammer.y = this.player.y 
@@ -234,8 +239,12 @@ export class GameScene extends Phaser.Scene {
     }
 
     public hammerColliderer(object1: Hammer, object2: Enemy){
-        if(this.canHit == false) {
-            object2.x = -200000
+        console.log("can hit? "+this.canHit);
+        
+        if(this.canHit) {
+            console.log("Dit werkt")
+            // object2.x = -200000
+            object2.destroy()
         }
     }
 
@@ -270,6 +279,9 @@ export class GameScene extends Phaser.Scene {
             //     e.update
             // }
 
+        this.heartOne.update()
+        this.heartTwo.update()
+        this.heartThree.update()
            
         if(this.player.health == 2){
             this.heartThree.setVisible(false)
@@ -283,26 +295,6 @@ export class GameScene extends Phaser.Scene {
             console.log("Game over")
             this.heartOne.setVisible(false)
             this.gameOver()
-        }
-
-        this.heartOne.x = this.player.x - 30
-        this.heartOne.y = this.player.y - 100
-
-        this.heartTwo.x = this.player.x
-        this.heartTwo.y = this.player.y - 100
-
-        this.heartThree.x = this.player.x + 30
-        this.heartThree.y = this.player.y - 100
-
-        if(this.canHit == true){
-
-        this.hammer.x = this.player.x + 30
-        this.hammer.y = this.player.y - 100
-        }
-
-        if(this.canHit == false)
-        { this.hammer.x = this.player.x + 120
-            this.hammer.y = this.player.y-60
         }
 
        // this.hammer.setTexture("hammerdown")
