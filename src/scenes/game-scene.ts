@@ -215,7 +215,7 @@ export class GameScene extends Phaser.Scene {
     }
 
     private gameOver(){
-        this.scene.start("StartScene")
+        this.scene.start("GameOverScene")
     }
     
 
