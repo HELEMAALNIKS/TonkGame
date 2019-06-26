@@ -32,7 +32,7 @@ export class GameScene extends Phaser.Scene {
     private hammer : Hammer
 
     private cursors: Phaser.Input.Keyboard.CursorKeys   
-    private canHit : boolean
+    private Hit : boolean
 
     private  overlapCollider
 
@@ -43,7 +43,7 @@ export class GameScene extends Phaser.Scene {
 
         document.addEventListener("joystick0button8", () => this.leave())
         document.addEventListener("joystick0button9", () => this.leave())
-        document.addEventListener("joystick0button2", () => this.attack())
+       // document.addEventListener("joystick0button2", () => this.attack())
 
         
     }
@@ -72,7 +72,7 @@ export class GameScene extends Phaser.Scene {
 
         // button event voor slaan
         this.attackListener = () => this.attack()
-        document.addEventListener("joystick3button1", this.attackListener)
+        document.addEventListener("joystick0button2", this.attackListener)
 
         // achtergrond herhalen
         for (let b = 0; b < this.physics.world.bounds.width; b=b+3420) {
@@ -146,7 +146,7 @@ export class GameScene extends Phaser.Scene {
         this.heartTwo   = new Heart(this, this.player, 0    , 'heart')
         this.heartThree = new Heart(this, this.player, 30   , 'heart')
 
-        this.canHit = false
+        this.Hit = false
 
     
     }
@@ -159,20 +159,20 @@ export class GameScene extends Phaser.Scene {
     private enableHammer(){
         
         this.hammer.setTexture('hammerup')
-        this.canHit = false
-        this.hammer.canNotHit()
+        this.Hit = false
+        this.hammer.notHit()
         console.log("Kan weer slaan")
 
     }
 
     public attack(){
         
-        if (!this.canHit) {
+        if (!this.Hit) {
             console.log("Attack")
             this.hammer.setTexture('hammerdown')
             
-            this.canHit = true
-            this.hammer.canHit()
+            this.Hit = true
+            this.hammer.Hit()
             console.log("kan niet slaan")
             
             this.time.delayedCall(100, () => this.enableHammer(), [], this)
@@ -239,9 +239,9 @@ export class GameScene extends Phaser.Scene {
     }
 
     public hammerColliderer(object1: Hammer, object2: Enemy){
-        console.log("can hit? "+this.canHit);
+        console.log("can hit? "+this.Hit);
         
-        if(this.canHit) {
+        if(this.Hit) {
             console.log("Dit werkt")
             // object2.x = -200000
             object2.destroy()

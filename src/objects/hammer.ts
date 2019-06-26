@@ -27,12 +27,12 @@ export class Hammer extends Phaser.Physics.Arcade.Sprite  {
         
     }
     
-    public canHit() {
+    public Hit() {
         this.offsetX = 120
         this.offsetY = -60
     }
 
-    public canNotHit() {
+    public notHit() {
         this.offsetX = 30
         this.offsetY = - 100
     }
