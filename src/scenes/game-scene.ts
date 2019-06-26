@@ -119,9 +119,6 @@ export class GameScene extends Phaser.Scene {
         this.enemies.add(new Enemy(this, 1800, 200, "alien_hat"))
         this.enemies.add(new Enemy(this, 3300, 200, "alien_hat"))
         this.enemies.add(new Enemy(this, 3000, 200, "alien_hat"))
-
-
-
         //ground herhalen
         for (let i = 0; i < this.physics.world.bounds.width; i=i+1400) {
             const element = this.physics.world.bounds.width[i];
@@ -157,8 +154,6 @@ export class GameScene extends Phaser.Scene {
 
         this.Hit = false
 
-        this.addEnemy()
-
     
     }
     private jump(): void {
@@ -193,12 +188,6 @@ export class GameScene extends Phaser.Scene {
             
             this.time.delayedCall(100, () => this.enableHammer(), [], this)
         }
-    }
-
-    public addEnemy(){
-        this.enemies.add(new Enemy(this, Math.random() * 10000, Math.random() * 100, "alien_hat"))
-        console.log("hoi")
-        this.time.delayedCall(600, () => this.addEnemy(), [], this)
     }
         // this.hammer.x = this.player.x + 60
         // this.hammer.y = this.player.y 
