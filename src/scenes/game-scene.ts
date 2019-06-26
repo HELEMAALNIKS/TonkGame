@@ -25,6 +25,7 @@ export class GameScene extends Phaser.Scene {
     private ground: Phaser.GameObjects.Group
     private jumpListener: EventListener
     private attackListener : EventListener
+    private audioListener : EventListener
 
   
     private heartOne : Heart
@@ -70,6 +71,9 @@ export class GameScene extends Phaser.Scene {
         // button event voor jump toevoegen
         this.jumpListener = () => this.jump()
         document.addEventListener("joystick0button0", this.jumpListener)
+
+        this.audioListener = () => this.startSound()
+        document.addEventListener("joystick0button5", this.audioListener)
 
 
         // button event voor slaan
@@ -160,6 +164,11 @@ export class GameScene extends Phaser.Scene {
     private jump(): void {
         console.log("Jump")
         this.player.jump()
+    }
+
+    private startSound(){
+        let music = this.sound.add('slavking')
+        music.play()
     }
 
     

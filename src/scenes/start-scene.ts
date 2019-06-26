@@ -45,6 +45,7 @@ export class StartScene extends Phaser.Scene {
         console.log("button") 
         document.removeEventListener("joystick0button0", this.buttonListener)
         this.scene.start('GameScene')
+        
     }
 }
 
