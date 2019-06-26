@@ -4,13 +4,14 @@ import { StartScene } from "./scenes/start-scene"
 import { GameScene } from "./scenes/game-scene"
 import { EndScene } from "./scenes/end-scene"
 import { Arcade } from "./arcade/arcade"
+import { GameOverScene } from "./scenes/game-over-scene"
 
 const config: GameConfig = {
     width: 1440,
     height: 900,
     parent: "game",
     resolution: window.devicePixelRatio,
-    scene: [BootScene, StartScene, GameScene, EndScene],
+    scene: [BootScene, StartScene, GameScene, EndScene, GameOverScene],
     input: {
         keyboard: true
     },

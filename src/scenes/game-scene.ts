@@ -8,6 +8,8 @@ import { Grounds } from "../objects/ground";
 import { Game } from "../app";
 import { Heart } from "../objects/heart"
 import { Hammer } from "../objects/hammer";
+import { GameOverScene } from "./game-over-scene";
+
 
 
 
